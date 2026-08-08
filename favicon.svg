@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect x="4" y="4" width="56" height="56" rx="12" fill="#14171A"/>
+  <rect x="4" y="4" width="56" height="56" rx="12" fill="none" stroke="#3C464C" stroke-width="2"/>
+  <!-- pin ticks, echoing the IC-chip cards on the site -->
+  <g stroke="#3C464C" stroke-width="2" stroke-linecap="round">
+    <line x1="16" y1="2" x2="16" y2="6"/>
+    <line x1="32" y1="2" x2="32" y2="6"/>
+    <line x1="48" y1="2" x2="48" y2="6"/>
+    <line x1="16" y1="58" x2="16" y2="62"/>
+    <line x1="32" y1="58" x2="32" y2="62"/>
+    <line x1="48" y1="58" x2="48" y2="62"/>
+  </g>
+  <text x="32" y="41" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="26" font-weight="700" fill="#D9A44E" text-anchor="middle">JT</text>
+</svg>

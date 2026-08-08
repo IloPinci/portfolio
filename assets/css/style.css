@@ -95,6 +95,12 @@ a{ color: inherit; }
   background-size: 48px 48px;
   opacity: 0.18;
   mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, black 20%, transparent 75%);
+  animation: grid-drift 50s linear infinite;  
+}
+
+@keyframes grid-drift{
+  from{ background-position: 0 0, 0 0; }
+  to{ background-position: 48px 48px, 48px 48px; }
 }
 
 /* ---------- nav ---------- */
