@@ -1,0 +1,30 @@
+---
+layout: default
+title: Notes
+permalink: /blog/
+---
+
+<section class="blog-header">
+  <div class="wrap">
+    <p class="eyebrow">Research Notes</p>
+    <h1>Notes</h1>
+    <p class="lede">Write-ups, half-formed ideas, and things I learn along the way. I like to document my passions and even the most random stuff.</p>
+  </div>
+</section>
+
+<section class="post-list">
+  <div class="wrap">
+    {% if site.posts.size > 0 %}
+      {% for post in site.posts %}
+        <a class="post-item" href="{{ post.url | relative_url }}">
+          <p class="post-date">{{ post.date | date: "%B %-d, %Y" }}{% if post.tags.size > 0 %} · {{ post.tags | join: " · " }}{% endif %}</p>
+          <h3>{{ post.title }}</h3>
+          <p class="excerpt">{{ post.excerpt | strip_html | truncate: 160 }}</p>
+          <span class="read-more">Read note &rarr;</span>
+        </a>
+      {% endfor %}
+    {% else %}
+      <div class="empty-state">No notes yet - add a markdown file to _posts/ to publish your first one.</div>
+    {% endif %}
+  </div>
+</section>

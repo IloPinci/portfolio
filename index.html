@@ -1,0 +1,211 @@
+---
+layout: default
+title: Home
+---
+
+<section class="hero" id="hero">
+  <div class="wrap">
+    <p class="eyebrow">MSc Robotics Engineering - Università degli Studi di Genova</p>
+    <h1 class="reveal">Joel Topulli</h1>
+    <p class="lede reveal">
+      Robotics engineer working toward <strong>embodied intelligence</strong> -
+      studying how <strong>vision-language-action models</strong>, <strong>world models</strong>,
+      and <strong>reinforcement learning</strong> let robots perceive, predict, and act.
+    </p>
+    <div class="cta-row reveal">
+      <a class="btn primary" href="#projects">View Projects</a>
+      <a class="btn ghost" href="{{ '/blog/' | relative_url }}">Read My Notes</a>
+      <a class="btn ghost" href="mailto:{{ site.email }}?subject=CV%20Request">Request My CV</a>
+    </div>
+  </div>
+</section>
+
+<section id="research">
+  <div class="wrap">
+    <p class="eyebrow">Research Focus</p>
+    <h2 class="reveal">What I'm building toward</h2>
+    <div class="chip-grid">
+      <div class="chip reveal">
+        <span class="tag">VLA</span>
+        <h3>Vision-Language-Action</h3>
+        <p>How language grounds perception into action - and where that grounding turns out to be brittle under real-world perturbation.</p>
+      </div>
+      <div class="chip reveal">
+        <span class="tag">World Models</span>
+        <h3>Learned Simulators</h3>
+        <p>Models that let an agent imagine the consequences of an action before taking it, instead of learning purely from trial and error.</p>
+      </div>
+      <div class="chip reveal">
+        <span class="tag">RL</span>
+        <h3>Reinforcement Learning</h3>
+        <p>Closing the loop between prediction and control - turning a model's understanding of the world into decisions that hold up on hardware.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <p class="eyebrow">Selected Work</p>
+    <h2 class="reveal">Projects</h2>
+
+    <div class="project reveal">
+      <div class="designator">U1</div>
+      <div class="project-body">
+        <h3>SmolVLA - Perturbation Study</h3>
+        <p class="project-role">Graduate Research Assistant · The Engine Room, Genoa · Mar 2026 - Present</p>
+        <p class="desc">Investigating how SmolVLA's vision-language-action pipeline responds to input perturbations, to probe where its grounding between language and control holds and where it quietly breaks.</p>
+      </div>
+    </div>
+
+    <div class="project reveal">
+      <div class="designator">U2</div>
+      <div class="project-body">
+        <h3>RoboTO - Object Detection for Robotic Perception</h3>
+        <p class="project-role">Computer Vision Engineer · RoboTO, Turin · Oct 2024 - Jul 2025</p>
+        <p class="desc">Ran object-detection experiments with YOLO, curated and cleaned the training datasets, and evaluated model performance across a Linux-based robotics workflow.</p>
+        <p class="todo">[Add mAP/FPS numbers, sample detections, and dataset notes here.]</p>
+        <div class="tag-row">
+          <span class="pill">YOLO</span>
+          <span class="pill">Computer Vision</span>
+          <span class="pill">ROS</span>
+        </div>
+        <div class="project-links">
+          <a href="#">Code</a>
+          <a href="#">Demo</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project reveal">
+      <div class="designator">U3</div>
+      <div class="project-body">
+        <h3>DOPE Hubs - Robotic Arm System Architecture</h3>
+        <p class="project-role">Systems Engineer (Student Team) · DOPE Hubs, Genoa · Oct 2025 - Mar 2026</p>
+        <p class="desc">Defined requirements, sensor interfaces, control hierarchy, and hardware constraints for a robotic arm ahead of prototyping.</p>
+        <p class="todo">[Add the architecture diagram and the key design trade-offs you made.]</p>
+        <div class="tag-row">
+          <span class="pill">Systems Engineering</span>
+          <span class="pill">Sensor Interfaces</span>
+          <span class="pill">Control</span>
+        </div>
+        <div class="project-links">
+          <a href="#">Diagram</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project reveal">
+      <div class="designator">U4</div>
+      <div class="project-body">
+        <h3>8-bit Computer - SAP-1 Inspired</h3>
+        <p class="project-role">Personal Project · Mar 2025 - Jun 2025</p>
+        <p class="desc">Built a programmable 8-bit computer from discrete 74LS-series logic - a custom ALU for binary addition and two's-complement subtraction, a manual bus system, EEPROM-based instruction decoding, and a program counter with jump support. Fixed switch-bounce with hardware debouncing rather than a software patch.</p>
+        <p class="todo">[Add photos, schematics, and the debouncing story here.]</p>
+        <div class="tag-row">
+          <span class="pill">Digital Logic</span>
+          <span class="pill">Hardware</span>
+          <span class="pill">ALU Design</span>
+        </div>
+        <div class="project-links">
+          <a href="#">Photos</a>
+          <a href="#">Schematic</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <p class="eyebrow">Background</p>
+    <h2 class="reveal">Experience &amp; Education</h2>
+    <div class="split">
+      <div>
+        <h3 style="font-family:var(--mono); font-size:14px; letter-spacing:0.05em; color:var(--ink-dim); margin:0 0 20px; text-transform:uppercase;">Experience</h3>
+        <div class="timeline">
+          <div class="tl-item reveal">
+            <p class="tl-date">Mar 2026 - Present</p>
+            <h3>Graduate Research Assistant</h3>
+            <p class="tl-org">The-Engine-Room, Genoa</p>
+            <p class="detail">Perturbation study on SmolVLA.</p>
+          </div>
+          <div class="tl-item reveal">
+            <p class="tl-date">Oct 2025 - Mar 2026</p>
+            <h3>Systems Engineer (Student Team)</h3>
+            <p class="tl-org">DOPE Hubs, Genoa</p>
+            <p class="detail">Requirements analysis and system architecture for a robotic arm; sensor interfaces and control hierarchy.</p>
+          </div>
+          <div class="tl-item reveal">
+            <p class="tl-date">Oct 2024 - Jul 2025</p>
+            <h3>Computer Vision Engineer (Student Team)</h3>
+            <p class="tl-org">RoboTO, Turin</p>
+            <p class="detail">YOLO object-detection experiments, dataset curation, model evaluation.</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-family:var(--mono); font-size:14px; letter-spacing:0.05em; color:var(--ink-dim); margin:0 0 20px; text-transform:uppercase;">Education</h3>
+        <div class="timeline">
+          <div class="tl-item reveal">
+            <p class="tl-date">Sep 2025 - Present</p>
+            <h3>MSc, Robotics Engineering</h3>
+            <p class="tl-org">Università degli Studi di Genova</p>
+          </div>
+          <div class="tl-item reveal">
+            <p class="tl-date">Mar 2024 - Mar 2025</p>
+            <h3>Erasmus+ Exchange, Computer Engineering</h3>
+            <p class="tl-org">Politecnico di Torino · IEEE-HKN member</p>
+          </div>
+          <div class="tl-item reveal">
+            <p class="tl-date">Sep 2022 - Jul 2025</p>
+            <h3>BSc, Computer Engineering - GPA 9.54/10</h3>
+            <p class="tl-org">Universiteti Politeknik i Tiranës · Top 10% · Full Merit Scholarship</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <p class="eyebrow">Toolset</p>
+    <h2 class="reveal">Skills</h2>
+    <div class="split">
+      <div class="skill-group reveal">
+        <h4>Languages</h4>
+        <div class="skill-row">
+          <span class="skill-pill">C++</span>
+          <span class="skill-pill">C</span>
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">MATLAB</span>
+          <span class="skill-pill">Bash</span>
+          <span class="skill-pill">SQL</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <h4>Tools</h4>
+        <div class="skill-row">
+          <span class="skill-pill">ROS2</span>
+          <span class="skill-pill">Git</span>
+          <span class="skill-pill">Docker</span>
+          <span class="skill-pill">Linux</span>
+          <span class="skill-pill">LaTeX</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="honors">
+  <div class="wrap">
+    <p class="eyebrow">Recognition</p>
+    <h2 class="reveal">Honors</h2>
+    <ul class="plain reveal">
+      <li><strong>Top 10% of Class</strong><span class="val">Polytechnic Univ. of Tirana</span></li>
+      <li><strong>Golden Medal</strong><span class="val">Prime Ministry of Albania</span></li>
+    </ul>
+  </div>
+</section>

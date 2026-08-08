@@ -1,0 +1,38 @@
+title: Joel Topulli
+tagline: "Robotics Engineering - VLA, World Models, RL"
+description: >-
+  Personal site and research notes of Joel Topulli, MSc Robotics Engineering
+  student working on Vision-Language-Action models, world models, and
+  reinforcement learning.
+
+
+url: "https://ilopinci.github.io"
+baseurl: "/portfolio"
+
+author: Joel Topulli
+email: 8663382@studenti.unige.it
+github_url: "https://github.com/IloPinci"        
+linkedin_url: "https://www.linkedin.com/in/joel-topulli-6748952b5/"      
+
+markdown: kramdown
+kramdown:
+  syntax_highlighter: rouge
+
+permalink: /notes/:year/:month/:day/:title/
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock

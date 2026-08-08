@@ -1,0 +1,13 @@
+---
+layout: default
+---
+<section class="post-single">
+  <div class="wrap prose">
+    <a class="back-link" href="{{ '/blog/' | relative_url }}">&larr; Back to Notes</a>
+    <p class="post-date">{{ page.date | date: "%B %-d, %Y" }}{% if page.tags.size > 0 %} · {{ page.tags | join: " · " }}{% endif %}</p>
+    <h1>{{ page.title }}</h1>
+    <div class="post-content">
+      {{ content }}
+    </div>
+  </div>
+</section>
