@@ -6,7 +6,7 @@ order: 4
 featured: false
 description: "A real-time rain and snow simulation in C using graphics.h, with wind, temperature and lightning controlled live from the keyboard."
 repo: "https://github.com/IloPinci/Rainfall-Simulation-in-C"
-video: "https://github.com/user-attachments/assets/44974f6e-60a2-4325-a0f6-ce8ac33537ce"
+video: "/assets/videos/rainfall-simulation.mp4"
 tags: ["C", "graphics.h", "Simulation"]
 ---
 {% raw %}

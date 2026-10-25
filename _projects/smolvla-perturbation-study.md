@@ -6,7 +6,7 @@ order: 1
 featured: true
 description: "Robustness evaluation of the SmolVLA vision-language-action model on a simulated pick-and-place task, tested across 11 perturbation conditions."
 repo: "https://github.com/IloPinci/SmolVLA-Perturbation-Study"
-video: "https://github.com/user-attachments/assets/4fa68e74-05a6-4f1b-920d-dd13814139f3"
+video: "/assets/videos/smolvla-perturbation-study.mp4"
 tags: ["VLA", "Imitation Learning", "Genesis", "LeRobot"]
 ---
 {% raw %}

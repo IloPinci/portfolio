@@ -6,7 +6,7 @@ order: 3
 featured: false
 description: "A multi-process, networked 2D drone simulator in C, built on hand-written POSIX IPC: pipes, signals and TCP sockets, with an ncurses interface."
 repo: "https://github.com/IloPinci/Posix-Drone-Simulator-ARP_UniGe"
-video: ""
+video: "/assets/videos/arp.mp4"
 tags: ["C", "POSIX IPC", "TCP/IP", "ncurses"]
 ---
 {% raw %}
