@@ -1,0 +1,40 @@
+{% assign projects = site.projects | sort: "order" %}
+<section id="projects">
+  <div class="wrap">
+    <p class="eyebrow">Selected Work</p>
+    <h2 class="reveal">Projects</h2>
+
+    <div class="project-grid">
+      {% for p in projects %}
+      <article class="pwin reveal{% if p.featured %} is-featured{% endif %}">
+        <div class="pwin-bar" aria-hidden="true">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="pwin-path">~/projects/{{ p.slug }}</span>
+        </div>
+
+        <div class="pwin-media" aria-hidden="true">
+          <div class="pwin-ph">
+            <span class="pwin-id">U{{ forloop.index }}</span>
+            <span class="pwin-tags">{{ p.tags | join: " · " }}</span>
+          </div>
+          {% if p.video != "" and p.video %}
+          <video muted loop playsinline preload="none" tabindex="-1"
+                 data-src="{% if p.video contains '://' %}{{ p.video }}{% else %}{{ p.video | relative_url }}{% endif %}"></video>
+          {% endif %}
+        </div>
+
+        <div class="pwin-body">
+          {% if p.featured %}<span class="pwin-badge">Featured research</span>{% endif %}
+          <h3><a href="{{ p.url | relative_url }}">{{ p.title }}</a></h3>
+          <p class="pwin-desc">{{ p.description }}</p>
+          <div class="pwin-actions">
+            <a class="btn primary sm" href="{{ p.url | relative_url }}">Read more<span class="sr-only"> about {{ p.title }}</span></a>
+            <a class="btn ghost sm" href="{{ p.repo }}" target="_blank" rel="noopener">Code &#8599;<span class="sr-only"> for {{ p.title }} on GitHub</span></a>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<script src="{{ '/assets/js/projects.js' | relative_url }}" defer></script>

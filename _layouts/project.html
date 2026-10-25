@@ -1,0 +1,17 @@
+---
+layout: default
+---
+<section class="post-single project-page">
+  <div class="wrap prose wide">
+    <a class="back-link" href="{{ '/#projects' | relative_url }}">&larr; All projects</a>
+    {% if page.tags.size > 0 %}<p class="post-date">{{ page.tags | join: " · " }}</p>{% endif %}
+    <h1>{{ page.title }}</h1>
+    <p class="project-lede">{{ page.description }}</p>
+    <div class="project-actions">
+      <a class="btn primary" href="{{ page.repo }}" target="_blank" rel="noopener">View code on GitHub &#8599;</a>
+    </div>
+    <div class="post-content readme">
+      {{ content }}
+    </div>
+  </div>
+</section>
