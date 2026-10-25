@@ -1,16 +1,13 @@
-// Project windows: play the preview video on hover / keyboard focus.
-// - Each clip starts downloading shortly before its card scrolls into view, so it is
-//   already buffered when someone hovers (otherwise a quick hover ends before it loads).
-// - Touch devices have no hover, so the clip plays while the card is mostly on screen.
-// - Visitors who prefer reduced motion get no autoplay while scrolling. A hover or
-//   keyboard focus is a deliberate action, so the preview still plays then.
+// Project windows: preview videos play on their own while the card is on screen.
+// - Each clip starts downloading shortly before its card scrolls into view.
+// - Clips pause when scrolled off screen (saves battery / CPU) and resume when they return.
+// - Visitors who prefer reduced motion get no autoplay; for them the clip plays on hover / keyboard focus instead.
 // - If a clip fails to load, the static placeholder simply stays visible.
 (function () {
   var cards = document.querySelectorAll('.pwin');
   if (!cards.length) return;
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var noHover = window.matchMedia('(hover: none)').matches;
   var hasIO = 'IntersectionObserver' in window;
 
   cards.forEach(function (card) {
@@ -30,35 +27,27 @@
       if (p && p.catch) p.catch(function () {});
     }
 
-    function stop() {
-      video.pause();
-      card.classList.remove('is-playing');
-      try { video.currentTime = 0; } catch (e) {}
-    }
-
     video.addEventListener('playing', function () { card.classList.add('is-playing'); });
     video.addEventListener('error', function () { card.classList.remove('is-playing'); });
 
     if (hasIO) {
-      var warmer = new IntersectionObserver(function (entries, obs) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) { warm(); obs.unobserve(card); }
-        });
-      }, { rootMargin: '300px' });
-      warmer.observe(card);
+      new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (e) { if (e.isIntersecting) { warm(); obs.unobserve(card); } });
+      }, { rootMargin: '300px' }).observe(card);
     }
 
-    if (noHover && hasIO) {
-      if (reduceMotion) return;
+    if (hasIO && !reduceMotion) {
+      // Always-on preview while the card is visible.
       new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) { e.isIntersecting ? play() : stop(); });
-      }, { threshold: 0.6 }).observe(card);
+        entries.forEach(function (e) { e.isIntersecting ? play() : video.pause(); });
+      }, { threshold: 0.25 }).observe(card);
     } else {
+      // Reduced motion (or very old browser): only on a deliberate hover / focus.
       card.addEventListener('mouseenter', play);
-      card.addEventListener('mouseleave', stop);
       card.addEventListener('focusin', play);
+      card.addEventListener('mouseleave', function () { video.pause(); card.classList.remove('is-playing'); });
       card.addEventListener('focusout', function (e) {
-        if (!card.contains(e.relatedTarget)) stop();
+        if (!card.contains(e.relatedTarget)) { video.pause(); card.classList.remove('is-playing'); }
       });
     }
   });

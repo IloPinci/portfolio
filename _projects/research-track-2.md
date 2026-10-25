@@ -6,7 +6,7 @@ order: 2
 featured: false
 description: "Assignment work for the Research Track 2 course at the University of Genoa."
 repo: "https://github.com/IloPinci/Research_Track_2-Unige/tree/assignment"
-video: "/assets/videos/rt_1"
+video: "/assets/videos/rt_2.mp4"
 tags: ["UniGe", "Coursework"]
 ---
 {% raw %}
