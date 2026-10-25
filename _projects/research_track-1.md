@@ -8,7 +8,7 @@ description: "Two ROS2 assignments from the Research Track course at UniGe: mult
 repo: "https://github.com/IloPinci/Research-Track_UniGe"
 video: "/assets/videos/rt_1.mp4"
 tags: ["ROS2","C++","Python","Turtlesim"]
-skills: [ROS2, C++, Python]
+skills: [ROS2, C++, Python, Bash]
 ---
 {% raw %}
 <div align="center" markdown="1">
@@ -24,7 +24,7 @@ skills: [ROS2, C++, Python]
 ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚══════╝    
 </pre>
 
-### *Research Track - University of Genova*
+### *Research Track — University of Genova*
 
 ---
 
@@ -43,8 +43,8 @@ skills: [ROS2, C++, Python]
 ## Table of Contents
 
 - [Overview](#-overview)
-- [Assignment 1 - Multi-Turtle Turtlesim Control](#-assignment-1--multi-turtle-turtlesim-control)
-- [Assignment 2 - Autonomous Collision Avoidance](#-assignment-2--autonomous-collision-avoidance)
+- [Assignment 1 — Multi-Turtle Turtlesim Control](#-assignment-1--multi-turtle-turtlesim-control)
+- [Assignment 2 — Autonomous Collision Avoidance](#-assignment-2--autonomous-collision-avoidance)
 - [Why C++ *and* Python?](#-why-c-and-python)
 - [Architecture](#-architecture)
 - [Getting Started](#-getting-started)
@@ -53,7 +53,7 @@ skills: [ROS2, C++, Python]
 
 ## Overview
 
-This repository is the product of two robotics assignments completed during the **Research Track** course at the University of Genova. Each assignment progressively builds on core ROS2 competencies - from interactive multi-robot control to fully autonomous, sensor-driven navigation with safety systems.
+This repository is the product of two robotics assignments completed during the **Research Track** course at the University of Genova. Each assignment progressively builds on core ROS2 competencies — from interactive multi-robot control to fully autonomous, sensor-driven navigation with safety systems.
 
 The work spans **three branches**, each representing a distinct technical deliverable:
 
@@ -67,31 +67,31 @@ The work spans **three branches**, each representing a distinct technical delive
 
 ---
 
-## Assignment 1 - Multi-Turtle Turtlesim Control
+## Assignment 1 — Multi-Turtle Turtlesim Control
 
 > **Branch →** [`Assignment-1`](https://github.com/IloPinci/Research-Track_UniGe/tree/Assignment-1) &nbsp;|&nbsp; 📹 [Demo Video](https://youtu.be/ZyCxgk-yXOY)
 
-A real-time, interactive two-turtle control system built on **ROS2** and **Turtlesim**. The system runs as three coordinated nodes launched simultaneously from a single launch file. The user selects a turtle from the terminal, inputs velocities, and the turtle moves for exactly 1 second before stopping - while a background node continuously monitors safety.
+A real-time, interactive two-turtle control system built on **ROS2** and **Turtlesim**. The system runs as three coordinated nodes launched simultaneously from a single launch file. The user selects a turtle from the terminal, inputs velocities, and the turtle moves for exactly 1 second before stopping — while a background node continuously monitors safety.
 
 <details markdown="1">
 <summary><strong>Node Architecture (click to expand)</strong></summary>
 
 <br/>
 
-**`ui_node.py`** - Interactive terminal controller
+**`ui_node.py`** — Interactive terminal controller
 - Prompts the user to select a turtle (`1` or `2`) and input linear/angular velocities
 - Clamps values to safe ranges (`linear ∈ [-2, 2]`, `angular ∈ [-3, 3]`) with a console warning when clamping occurs
 - Publishes commands for exactly **1 second**, then zeroes the twist to stop the turtle
-- Pressing `q` publishes a `Bool` on `/shutdown_signal` and exits cleanly - all other nodes shut down as a result
+- Pressing `q` publishes a `Bool` on `/shutdown_signal` and exits cleanly — all other nodes shut down as a result
 
-**`distance_node.py`** - Real-time safety monitor (10 Hz)
+**`distance_node.py`** — Real-time safety monitor (10 Hz)
 - Calculates the **Euclidean distance** between both turtles and publishes it to `/turtle_distance`
 - **Collision Avoidance**: When turtles are within `1.0` units, both are commanded to reverse at `0.5 u/s` simultaneously until they exceed the threshold
-- **Boundary Protection**: When a turtle exits the `[1.0, 10.0]` window, the node computes the closest wall, calculates the angle toward the geometric center of the arena, and either rotates to face it or drives forward - this prevents the turtle from getting trapped in a corner where a naive backup would immediately hit the opposite wall
+- **Boundary Protection**: When a turtle exits the `[1.0, 10.0]` window, the node computes the closest wall, calculates the angle toward the geometric center of the arena, and either rotates to face it or drives forward — this prevents the turtle from getting trapped in a corner where a naive backup would immediately hit the opposite wall
 
-**`turtle_spawn.py`** - Calls the `/spawn` service to place `turtle2` at `(7.0, 7.0, θ=0)`
+**`turtle_spawn.py`** — Calls the `/spawn` service to place `turtle2` at `(7.0, 7.0, θ=0)`
 
-**`run.py`** - Single-command launch for all nodes; registers an `OnProcessExit` handler so the entire session terminates when the UI node exits
+**`run.py`** — Single-command launch for all nodes; registers an `OnProcessExit` handler so the entire session terminates when the UI node exits
 
 </details>
 
@@ -100,8 +100,8 @@ A real-time, interactive two-turtle control system built on **ROS2** and **Turtl
 
 <br/>
 
-- **Why rotate toward center on boundary hit?** A naive "back up" approach fails in corners - the turtle reverses into another wall, creating an infinite oscillation loop. Rotating toward the geometric center guarantees there is always a safe escape vector regardless of which wall was hit.
-- **Why 1-second command windows?** This matches the assignment specification and creates a predictable, discrete control cycle - important for the safety monitor to have stable pose readings between commands.
+- **Why rotate toward center on boundary hit?** A naive "back up" approach fails in corners — the turtle reverses into another wall, creating an infinite oscillation loop. Rotating toward the geometric center guarantees there is always a safe escape vector regardless of which wall was hit.
+- **Why 1-second command windows?** This matches the assignment specification and creates a predictable, discrete control cycle — important for the safety monitor to have stable pose readings between commands.
 - **Why a shutdown signal topic?** Using a `Bool` publisher on `/shutdown_signal` allows clean inter-node communication for termination, rather than relying on `SIGINT` propagation through `konsole` subprocess trees which can leave orphaned processes.
 
 </details>
@@ -110,11 +110,11 @@ A real-time, interactive two-turtle control system built on **ROS2** and **Turtl
 
 ---
 
-## Assignment 2 - Autonomous Collision Avoidance
+## Assignment 2 — Autonomous Collision Avoidance
 
 > 📹 [Demo Video](https://youtu.be/LJHyMQzdmR8)
 
-A production-grade safety middleware for a differential-drive robot operating in **Gazebo**, using live **LiDAR** data to autonomously prevent collisions - while monitoring velocity statistics through a background service node.
+A production-grade safety middleware for a differential-drive robot operating in **Gazebo**, using live **LiDAR** data to autonomously prevent collisions — while monitoring velocity statistics through a background service node.
 
 The system was implemented **twice**: once in C++, once in Python. See [Why C++ and Python?](#-why-c-and-python) for the reasoning.
 
@@ -124,24 +124,24 @@ The system was implemented **twice**: once in C++, once in Python. See [Why C++ 
 
 > **Branch →** [`Assignment-2`](https://github.com/IloPinci/Research-Track_UniGe/tree/Assignment-2)
 
-Built as a proper `ament_cmake` package with **custom ROS2 interface generation** - messages and services are defined in `.msg` / `.srv` files and compiled directly into the package via `rosidl_generate_interfaces`.
+Built as a proper `ament_cmake` package with **custom ROS2 interface generation** — messages and services are defined in `.msg` / `.srv` files and compiled directly into the package via `rosidl_generate_interfaces`.
 
 <details markdown="1">
 <summary><strong>Node Details (click to expand)</strong></summary>
 
 <br/>
 
-**`control_node.cpp`** - Safety-aware velocity relay
+**`control_node.cpp`** — Safety-aware velocity relay
 - Subscribes to `/cmd_vel_input` (user commands via teleop) and `/scan` (LaserScan)
 - Finds the minimum non-zero, non-infinite range value across all scan rays
 - If `min_dist < safety_threshold` (default `0.5 m`): blocks user input, publishes `-0.3 m/s` for 10 scan cycles (~1 second), then stops and clears the safety flag
 - Publishes `ObstacleInfo` with minimum distance, obstacle direction (`Front` / `Left` / `Right` computed from ray index vs scan midpoint ± 50 rays), and the current threshold
-- Exposes `set_safety_threshold` service - the threshold can be updated at runtime without restarting any node
+- Exposes `set_safety_threshold` service — the threshold can be updated at runtime without restarting any node
 - Yellow `RCLCPP_WARN_THROTTLE` messages fire at most once per second to avoid log flooding
 
-**`stat_node.cpp`** - Sliding-window velocity tracker
+**`stat_node.cpp`** — Sliding-window velocity tracker
 - Maintains two `std::deque<float>` buffers capped at size 5 for linear (`x`) and angular (`z`) velocities
-- Subscribes to `/cmd_vel` - the *filtered* output, so statistics reflect only commands that actually reached the robot
+- Subscribes to `/cmd_vel` — the *filtered* output, so statistics reflect only commands that actually reached the robot
 - Exposes `get_velocity_stats` service returning running averages; returns `0.0` if history is empty
 
 **Custom Interfaces** (generated at build time inside the same package):
@@ -166,18 +166,18 @@ Functionally identical system re-implemented in Python, deliberately split acros
 
 <br/>
 
-**`control_node.py`** - Same safety logic, Python idioms
+**`control_node.py`** — Same safety logic, Python idioms
 - Uses `enumerate` over scan ranges instead of index-based iteration
 - Log throttling implemented manually via `get_clock().now()` nanosecond comparison since `rclpy` has no built-in `WARN_THROTTLE`
 - Backup counter and safety flag mirror the C++ state machine exactly
 
-**`stat_node.py`** - Clean, Pythonic stats tracker
+**`stat_node.py`** — Clean, Pythonic stats tracker
 - `deque(maxlen=5)` gives automatic FIFO eviction with no manual size check
-- Linear and angular histories are tracked in separate deques - fixing a subtle bug where a naive implementation would overwrite the linear average with the angular result before returning the response
+- Linear and angular histories are tracked in separate deques — fixing a subtle bug where a naive implementation would overwrite the linear average with the angular result before returning the response
 
-**`a2_interfaces_python`** - Standalone `ament_cmake` package
+**`a2_interfaces_python`** — Standalone `ament_cmake` package
 - Contains the same `.msg` and `.srv` definitions as the C++ package
-- Must be built and sourced *before* `a2_python` - otherwise the Python import of `ObstacleInfo`, `GetVelocityStats`, and `SetSafetyThreshold` will fail at runtime
+- Must be built and sourced *before* `a2_python` — otherwise the Python import of `ObstacleInfo`, `GetVelocityStats`, and `SetSafetyThreshold` will fail at runtime
 
 </details>
 
@@ -253,7 +253,7 @@ Both branches produce identical ROS2 node graphs. The architecture diagram below
 ## Getting Started
 
 <details markdown="1">
-<summary><strong>Assignment 1 - Turtlesim Control</strong></summary>
+<summary><strong>Assignment 1 — Turtlesim Control</strong></summary>
 
 <br/>
 
@@ -271,7 +271,7 @@ ros2 launch assignment1_rt run.py
 </details>
 
 <details markdown="1">
-<summary><strong>Assignment 2 - C++ Controller</strong></summary>
+<summary><strong>Assignment 2 — C++ Controller</strong></summary>
 
 <br/>
 
@@ -299,7 +299,7 @@ ros2 service call /set_safety_threshold \
 </details>
 
 <details markdown="1">
-<summary><strong>Assignment 2 - Python Controller</strong></summary>
+<summary><strong>Assignment 2 — Python Controller</strong></summary>
 
 <br/>
 
