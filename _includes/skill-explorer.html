@@ -1,0 +1,7 @@
+<link rel="stylesheet" href="{{ '/assets/css/skill-explorer.css' | relative_url }}">
+{% assign sk_projects = site.projects | sort: "order" %}
+<script type="application/json" id="sk-data">
+{"projects":[{% for p in sk_projects %}{"title":{{ p.title | jsonify }},"slug":{{ p.slug | jsonify }},"url":{{ p.url | relative_url | jsonify }},"desc":{{ p.description | jsonify }},"skills":{% if p.skills %}{{ p.skills | jsonify }}{% else %}[]{% endif %}}{% unless forloop.last %},{% endunless %}{% endfor %}],
+"notes":[{% for n in site.posts %}{"title":{{ n.title | jsonify }},"url":{{ n.url | relative_url | jsonify }},"date":{{ n.date | date: "%b %-d, %Y" | jsonify }},"skills":{% if n.skills %}{{ n.skills | jsonify }}{% else %}[]{% endif %}}{% unless forloop.last %},{% endunless %}{% endfor %}]}
+</script>
+<script src="{{ '/assets/js/skill-explorer.js' | relative_url }}" defer></script>

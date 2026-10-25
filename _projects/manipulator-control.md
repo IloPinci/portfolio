@@ -8,6 +8,7 @@ description: "MATLAB implementations of rotation representations, kinematic mode
 repo: "https://github.com/IloPinci/Modeling-and-Control-of-Manipulators_UniGe"
 video: "/assets/videos/manipulator-control.mp4"
 tags: ["MATLAB", "Kinematics", "Franka Panda"]
+skills: [MATLAB]
 ---
 {% raw %}
 > Three progressive assignments covering rotation representations, geometric/kinematic modelling, and full Cartesian control of a 7-DOF robotic manipulator. All implemented in MATLAB and tested on a real **Franka Panda** robotic arm.  

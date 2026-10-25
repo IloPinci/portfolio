@@ -1,6 +1,7 @@
 ---
 title: "SmolVLA setup: LeRobot, Conda and Genesis on WSL2"
 tags: [smolvla, lerobot, conda, setup]
+skills: [Linux, Python]
 ---
 
 My notes on setting up LeRobot and SmolVLA with Conda on WSL2, and on getting the Genesis simulator to run inside the same environment.

@@ -8,6 +8,7 @@ description: "A multi-process, networked 2D drone simulator in C, built on hand-
 repo: "https://github.com/IloPinci/Posix-Drone-Simulator-ARP_UniGe"
 video: "/assets/videos/arp.mp4"
 tags: ["C", "POSIX IPC", "TCP/IP", "ncurses"]
+skills: [C, Linux, Bash]
 ---
 {% raw %}
 <div align="center" markdown="1">

@@ -8,6 +8,7 @@ description: "A real-time rain and snow simulation in C using graphics.h, with w
 repo: "https://github.com/IloPinci/Rainfall-Simulation-in-C"
 video: "/assets/videos/rainfall-simulation.mp4"
 tags: ["C", "graphics.h", "Simulation"]
+skills: [C]
 ---
 {% raw %}
 > A real-time weather simulation built in C during my first year of university. Demonstrates low-level graphics programming, animation loops, keyboard-driven interactivity, and basic physics modelling - all without a game engine or framework. Variable and function names are written in Albanian (`Shiu` = rain, `Bore` = snow, `Era` = wind, `Vetetime` = lightning).

@@ -1,6 +1,7 @@
 ---
 title: "Some Useful GitCommands"
 tags: [git]
+skills: [Git]
 ---
 
 

@@ -8,7 +8,7 @@ description: "Two ROS2 assignments from the Research Track course at UniGe: mult
 repo: "https://github.com/IloPinci/Research-Track_UniGe"
 video: "/assets/videos/rt_1.mp4"
 tags: ["ROS2","C++","Python","Turtlesim"]
-skills: [ROS2, C++, Python, Bash]
+skills: [ROS2, C++, Python]
 ---
 {% raw %}
 <div align="center" markdown="1">

@@ -1,6 +1,7 @@
 ---
 title: "Intro to Genesis: setting it up on WSL2"
 tags: [genesis, wsl2, cuda, setup]
+skills: [Linux, Python]
 ---
 
 This whole operation is being done on WSL2. The OS inside the WSL is Ubuntu 22.04.5 LTS (jammy jellyfish). 
