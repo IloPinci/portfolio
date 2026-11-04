@@ -13,7 +13,8 @@ baseurl: "/portfolio"
 author: Joel Topulli
 email: 8663382@studenti.unige.it
 github_url: "https://github.com/IloPinci"        
-linkedin_url: "https://www.linkedin.com/in/joel-topulli-6748952b5/"      
+linkedin_url: "https://www.linkedin.com/in/joel-topulli-6748952b5/"   
+lichess_username: "IloPinci75"   
 
 markdown: kramdown
 kramdown:

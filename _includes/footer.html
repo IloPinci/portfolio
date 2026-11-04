@@ -12,5 +12,17 @@
       <span>{{ site.author | upcase }} - Powered by Jekyll - Hosted by GitHub Pages - Built with the help of Claude </span>
       <span id="year"></span>
     </div>
+
+    <div class="knight-egg" data-user="{{ site.lichess_username }}">
+      <button class="knight-btn" id="knight-btn" type="button" aria-label="Chess knight" aria-expanded="false">&#9822;&#xFE0E;</button>
+      <div class="knight-pop" id="knight-pop" role="dialog" aria-label="Lichess puzzle rating" hidden>
+        <p class="kp-label">Puzzle rating</p>
+        <p class="kp-rating" id="kp-rating">…</p>
+        <p class="kp-sub" id="kp-sub">@{{ site.lichess_username }} on Lichess</p>
+        <a class="kp-challenge" href="https://lichess.org/?user={{ site.lichess_username }}#friend" target="_blank" rel="noopener">Challenge me to a game &#8599;</a>
+      </div>
+    </div>
   </div>
 </footer>
+
+<script src="{{ '/assets/js/knight.js' | relative_url }}" defer></script>
