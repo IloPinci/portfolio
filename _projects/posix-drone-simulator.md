@@ -1,7 +1,7 @@
 ---
 layout: project
 excerpt_separator: ""
-title: "POSIX Drone Simulator"
+title: "Multi-Process Drone Simulator in C (POSIX IPC & TCP)"
 order: 3
 featured: false
 description: "A multi-process, networked 2D drone simulator in C, built on hand-written POSIX IPC: pipes, signals and TCP sockets, with an ncurses interface."

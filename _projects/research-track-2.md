@@ -1,7 +1,7 @@
 ---
 layout: project
 excerpt_separator: ""
-title: "Research Track 2"
+title: "ROS2 Pose Navigation with Action Server, Components & tf2"
 order: 2
 featured: false
 description: "A ROS2 navigation pipeline for a differential-drive robot in Gazebo: a C++ action server and client running as composable nodes, closed-loop control grounded by tf2, and a Python control UI."

@@ -1,7 +1,7 @@
 ---
 layout: project
 excerpt_separator: ""
-title: "Modeling & Control of Manipulators"
+title: "Cartesian Control of a Franka Panda in MATLAB"
 order: 5
 featured: false
 description: "MATLAB implementations of rotation representations, kinematic modelling and Cartesian control of a 7-DOF arm, tested on a real Franka Panda."

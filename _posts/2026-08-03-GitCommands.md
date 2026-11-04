@@ -2,6 +2,7 @@
 title: "Some Useful GitCommands"
 tags: [git]
 skills: [Git]
+description: "A quick reference of the git commands I keep forgetting."
 ---
 
 

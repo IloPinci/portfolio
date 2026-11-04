@@ -1,7 +1,7 @@
 ---
 layout: project
 excerpt_separator: ""
-title: "Research Track 1"
+title: "ROS2 Turtlesim Control & LiDAR Collision Avoidance"
 order: 1.5
 featured: false
 description: "Two ROS2 assignments from the Research Track course at UniGe: multi-turtle control in turtlesim, then an autonomous collision-avoidance safety controller, written in C++ and re-implemented in Python."

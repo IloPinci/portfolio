@@ -2,6 +2,7 @@
 title: "Intro to Genesis: setting it up on WSL2"
 tags: [genesis, wsl2, cuda, setup]
 skills: [Linux, Python]
+description: "Setting up CUDA, PyTorch and the Genesis simulator on WSL2, and fixing the CUDA and black-screen errors I hit."
 ---
 
 This whole operation is being done on WSL2. The OS inside the WSL is Ubuntu 22.04.5 LTS (jammy jellyfish). 

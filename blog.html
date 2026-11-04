@@ -19,7 +19,7 @@ permalink: /blog/
         <a class="post-item" href="{{ post.url | relative_url }}">
           <p class="post-date">{{ post.date | date: "%B %-d, %Y" }}{% if post.tags.size > 0 %} · {{ post.tags | join: " · " }}{% endif %}</p>
           <h3>{{ post.title }}</h3>
-          <p class="excerpt">{{ post.excerpt | strip_html | truncate: 160 }}</p>
+          <p class="excerpt">{{ post.description | default: post.excerpt | strip_html | truncate: 160 }}</p>
           <span class="read-more">Read note &rarr;</span>
         </a>
       {% endfor %}
