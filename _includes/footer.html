@@ -14,7 +14,10 @@
     </div>
 
     <div class="knight-egg" data-user="{{ site.lichess_username }}">
-      <button class="knight-btn" id="knight-btn" type="button" aria-label="Chess knight" aria-expanded="false">&#9822;&#xFE0E;</button>
+      <button class="knight-btn" id="knight-btn" type="button" aria-label="Lichess knight" aria-expanded="false">
+  <img class="kn-light" src="{{ '/assets/photos/lichess-black.png' | relative_url }}" alt="">
+  <img class="kn-dark" src="{{ '/assets/photos/lichess-white.png' | relative_url }}" alt="">
+</button>
       <div class="knight-pop" id="knight-pop" role="dialog" aria-label="Lichess puzzle rating" hidden>
         <p class="kp-label">Puzzle rating</p>
         <p class="kp-rating" id="kp-rating">…</p>
