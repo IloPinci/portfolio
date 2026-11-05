@@ -304,6 +304,16 @@ h2{
   transition: all 0.2s ease;
   border: 1px solid var(--line-bright);
 }
+
+.lede .aside { opacity: .7; font-size: .92em; }
+.lede .aside a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 3px;
+}
+.lede .aside a:hover { text-decoration-style: solid; }
+
 .btn.primary{ background: var(--amber); color: var(--on-accent); border-color: var(--amber); font-weight: 600; }
 .btn.primary:hover{ background: #E8B563; }
 .btn.ghost{ color: var(--ink); }

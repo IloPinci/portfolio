@@ -2,9 +2,10 @@
 #contact .wrap { position: relative; }
 
 .knight-egg {
-  position: absolute;
-  left: 0;
-  bottom: 24px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 6px;
   z-index: 50;
 }
 
@@ -14,10 +15,10 @@
   background: transparent;
   border: 0;
   padding: 0;
-  width: 120px;
-  height: 120px;
+  width: 52px;
+  height: 52px;
   cursor: pointer;
-  opacity: .06;            /* ghost-like; raise it if too hidden */
+  opacity: .06;            
   transition: opacity .3s, transform .3s;
 }
 .knight-btn:hover,
@@ -40,7 +41,7 @@ html[data-theme="dark"] .knight-btn .kn-dark { display: block; }
   position: absolute;
   left: 0px;
   z-index: 51;
-  bottom: 100%;
+  bottom: calc(100% + 10px);
   width: min(260px, 80vw);
   padding: 18px 20px;
   border-radius: 12px;
