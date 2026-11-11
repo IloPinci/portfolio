@@ -2,7 +2,7 @@
   <div class="wrap">
     <p class="eyebrow">Get in Touch</p>
     <h2>Open to thesis &amp; research opportunities in robot learning</h2>
-    <p class="lede">If you're working on VLAs or robot learning and need a student who is eager to learn, write to me.</p>
+    <p class="lede">If you're working on VLAs or robot learning and need a student who is eager to learn, feel free to contact me.</p>
     <div class="contact-row">
       <a class="btn primary" href="mailto:{{ site.email }}">{{ site.email }}</a>
       <a class="btn ghost" href="{{ site.github_url }}" target="_blank" rel="noopener">GitHub</a>
@@ -22,7 +22,7 @@
       <p class="kp-label">Puzzle rating</p>
       <p class="kp-rating" id="kp-rating">…</p>
       <p class="kp-sub" id="kp-sub">@{{ site.lichess_username }} on Lichess</p>
-      <a class="kp-challenge" href="https://lichess.org/?user={{ site.lichess_username }}#friend" target="_blank" rel="noopener">Challenge me to a game ;) &#8599;</a>
+      <a class="kp-challenge" href="https://lichess.org/?user={{ site.lichess_username }}#friend" target="_blank" rel="noopener">Challenge me to a game. &#8599;</a>
       </div>
     </div>
   </div>
@@ -81,4 +81,25 @@
     if (e.key === 'Escape' && !pop.hidden) setOpen(false);
   });
 })();
+</script>
+
+
+<script>
+  // so i don't ping myself when i visit it locally
+  const host = window.location.hostname;
+  if (host !== 'localhost' && host !== '127.0.0.1') {
+    
+    // One alert per browser session
+    if (!sessionStorage.getItem('visited_portfolio')) {
+      fetch('https://discord.com/api/webhooks/1570123062219902988/0GeuG31WiLiG5s_dufEaMoyAGCtgDORjbWzPh51fA-YfFLDszTa3iN7t9yauc09yBFEy', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          content: 'New visitor'
+        })
+      }).then(() => {
+        sessionStorage.setItem('visited_portfolio', 'true');
+      }).catch(err => console.error('Webhook failed', err));
+    }
+  }
 </script>
