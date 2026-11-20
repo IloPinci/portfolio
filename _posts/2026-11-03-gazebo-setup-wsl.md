@@ -3,6 +3,8 @@ title: "Gazebo setup on WSL"
 tags: [linux, bash]
 skills: [Bash, Linux, Gazebo]
 description: "Getting Gazebo to render on WSL by forcing it onto my NVIDIA GPU instead of the integrated one."
+redirect_from:
+  - /notes/2026/11/03/Gazebo-setup-on-WSL/
 ---
 
 We want to install Gazebo on our WSL environment. Lets start with a simple update and restart to make sure that our WSL is up to date. In the windows powershell we want to run:

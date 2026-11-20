@@ -3,6 +3,8 @@ title: "Some Useful GitCommands"
 tags: [git]
 skills: [Git]
 description: "A quick reference of the git commands I keep forgetting."
+redirect_from:
+  - /notes/2026/08/03/GitCommands/
 ---
 
 

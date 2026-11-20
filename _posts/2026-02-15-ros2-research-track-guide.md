@@ -3,6 +3,8 @@ title: "Research Track Guide"
 tags: [bash, ros2, python]
 skills: [Bash, Linux, ROS2, Python]
 description: "My ROS2 starter guide: workspaces, packages, nodes, topics and services, plus a minimal publisher and subscriber explained line by line."
+redirect_from:
+  - /notes/2026/02/15/Research-Track-Cheat-Sheet/
 ---
 
 ### The first steps
