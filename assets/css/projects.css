@@ -101,6 +101,7 @@
   background: #000;
 }
 .pwin.is-playing .pwin-media video{ opacity: 1; }
+.pwin-media video[poster]{ opacity: 1; }
 
 /* body */
 .pwin-body{

@@ -18,7 +18,9 @@
             <span class="pwin-tags">{{ p.tags | join: " · " }}</span>
           </div>
           {% if p.video != "" and p.video %}
+          {% assign poster = p.poster | default: p.video | replace: ".mp4", ".jpg" %}
           <video muted loop playsinline preload="none" tabindex="-1"
+                 {% unless poster contains '://' %}poster="{{ poster | relative_url }}"{% endunless %}
                  data-src="{% if p.video contains '://' %}{{ p.video }}{% else %}{{ p.video | relative_url }}{% endif %}"></video>
           {% endif %}
         </div>
