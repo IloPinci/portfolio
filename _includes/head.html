@@ -16,9 +16,11 @@
 </script>
 
 <title>{% if page.url == '/' %}{{ site.title }} - {{ site.tagline }}{% elsif page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }} - {{ site.tagline }}{% endif %}</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="preload" href="{{ '/assets/fonts/inter-latin-400-normal.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ '/assets/fonts/jetbrains-mono-latin-400-normal.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{ '/assets/css/fonts.css' | relative_url }}">
+
 <link rel="icon" href="{{ '/assets/photos/favicon.svg' | relative_url }}" type="image/svg+xml">
 <link rel="icon" href="{{ '/assets/photos/favicon-32x32.png' | relative_url }}" sizes="32x32" type="image/png">
 <link rel="icon" href="{{ '/assets/photos/favicon-16x16.png' | relative_url }}" sizes="16x16" type="image/png">
