@@ -4,17 +4,431 @@ title: "Page not found"
 permalink: /404.html
 sitemap: false
 ---
-
 <section class="hero not-found">
   <div class="wrap">
     <p class="eyebrow">Error 404</p>
-    <h1>Who goes there?</h1>
-    <p class="lede">
-      Must have been the wind. 
-    </p>
+    <h1>You seem lost.</h1>
+
+    <div class="keeper" id="keeper" data-home="{{ '/' | relative_url }}">
+      <p class="bk-line"><b>Keeper of the Bridge:</b> STOP! Who approaches the unexisting page must answer my question for free, so the other side can he see:</p>
+      <p class="bk-question">What is the airspeed velocity of an unladen swallow?</p>
+
+      <form id="bk-form" autocomplete="off">
+        <label class="sr-only" for="bk-answer">Your answer to the bridge keeper</label>
+        <input id="bk-answer" type="text" maxlength="120" placeholder="Your answer..." spellcheck="false">
+        <button class="btn primary sm" type="submit">Answer</button>
+      </form>
+      <p class="bk-msg" id="bk-msg" role="status" aria-live="polite"></p>
+
+      <p class="bk-or">or</p>
+      <p class="bk-line">Skip the interrogation and help this robot get home.</p>
+    </div>
+
+    <div class="maze-game" id="maze-game">
+      <div class="mz-hud">
+        <span id="mz-moves">moves: 0</span>
+        <span class="mz-keys">arrow keys / WASD / swipe</span>
+        <button class="btn ghost sm" id="mz-new" type="button">New maze</button>
+      </div>
+
+      <canvas id="mz-canvas" role="img"
+              aria-label="Maze game. Move the robot from the top-left corner to the home tile in the bottom-right corner using the arrow keys."></canvas>
+
+      <div class="mz-pad" aria-label="Move controls">
+        <button type="button" data-dir="up" aria-label="Move up">&uarr;</button>
+        <button type="button" data-dir="left" aria-label="Move left">&larr;</button>
+        <button type="button" data-dir="down" aria-label="Move down">&darr;</button>
+        <button type="button" data-dir="right" aria-label="Move right">&rarr;</button>
+      </div>
+
+      <p class="mz-msg" id="mz-msg" role="status" aria-live="polite"></p>
+    </div>
+
     <div class="cta-row">
       <a class="btn primary" href="{{ '/' | relative_url }}">Back to home</a>
       <a class="btn ghost" href="{{ '/blog/' | relative_url }}">Browse my notes</a>
     </div>
   </div>
 </section>
+
+<style>
+  /*  bridge keeper */
+  .keeper{ max-width: 640px; margin: 0 0 32px; }
+  .bk-line{ color: var(--ink-dim); margin: 0 0 10px; }
+  .bk-line b{ color: var(--amber); font-family: var(--mono); font-weight: 600; }
+  .bk-question{
+    font-family: var(--mono); font-size: clamp(17px, 2.6vw, 21px); font-weight: 600;
+    color: var(--ink); margin: 0 0 18px;
+    border-left: 2px solid var(--amber); padding-left: 14px;
+  }
+  #bk-form{ display: flex; gap: 10px; flex-wrap: wrap; }
+  #bk-answer{
+    flex: 1 1 260px; min-width: 0;
+    font-family: var(--mono); font-size: 16px; color: var(--ink);
+    background: var(--surface); border: 1px solid var(--line-bright); border-radius: 3px;
+    padding: 11px 14px;
+  }
+  #bk-answer::placeholder{ color: var(--ink-faint); }
+  #bk-answer:disabled{ opacity: 0.6; }
+  #bk-form .btn{ cursor: pointer; }
+  .bk-msg{ font-family: var(--mono); font-size: 14px; color: var(--ink); min-height: 1.5em; margin: 12px 0 0; }
+  .bk-msg b{ color: var(--cyan); font-weight: 600; }
+  .bk-msg a{ color: var(--cyan); }
+  .bk-or{
+    display: flex; align-items: center; gap: 14px;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-faint); margin: 26px 0 14px;
+  }
+  .bk-or::before, .bk-or::after{ content: ""; flex: 1; height: 1px; background: var(--line-bright); }
+
+  /* maze */
+  .maze-game{ max-width: 640px; margin: 8px 0 36px; }
+  .mz-hud{
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    font-family: var(--mono); font-size: 13px; color: var(--ink-dim);
+    margin-bottom: 12px;
+  }
+  .mz-keys{ color: var(--ink-faint); }
+  .mz-hud .btn{ margin-left: auto; background: transparent; color: var(--ink); font-family: var(--mono); cursor: pointer; }
+  #mz-canvas{
+    display: block; width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--line-bright); border-radius: 4px;
+    touch-action: none;
+  }
+  .mz-msg{ font-family: var(--mono); font-size: 14px; color: var(--ink); min-height: 1.5em; margin: 14px 0 0; }
+  .mz-msg b{ color: var(--cyan); font-weight: 600; }
+
+  /* on-screen arrows only on touch devices */
+  .mz-pad{ display: none; }
+  @media (hover: none){
+    .mz-keys{ display: none; }
+    .mz-pad{
+      display: grid; grid-template-columns: repeat(3, 52px); grid-template-rows: repeat(2, 52px);
+      gap: 6px; justify-content: center; margin-top: 14px;
+    }
+    .mz-pad button{
+      font: 20px var(--mono); color: var(--ink);
+      background: var(--surface); border: 1px solid var(--line-bright); border-radius: 6px;
+    }
+    .mz-pad button:active{ border-color: var(--cyan); color: var(--cyan); }
+    .mz-pad [data-dir="up"]{ grid-column: 2; grid-row: 1; }
+    .mz-pad [data-dir="left"]{ grid-column: 1; grid-row: 2; }
+    .mz-pad [data-dir="down"]{ grid-column: 2; grid-row: 2; }
+    .mz-pad [data-dir="right"]{ grid-column: 3; grid-row: 2; }
+  }
+</style>
+
+<script>
+// bridge keeper
+(function () {
+  var box = document.getElementById('keeper');
+  var form = document.getElementById('bk-form');
+  var input = document.getElementById('bk-answer');
+  var msg = document.getElementById('bk-msg');
+  if (!box || !form || !input || !msg) return;
+
+  var home = box.getAttribute('data-home') || '/';
+  var tries = 0;
+  var done = false;
+
+  function normalize(s) {
+    return String(s).toLowerCase().replace(/[^a-z\s]/g, ' ').replace(/\s+/g, ' ').trim();
+  }
+
+  // The right answer is a question back: "What do you mean? An African or European swallow?"
+  // Any phrasing that names both swallows counts.
+  function isCorrect(raw) {
+    var n = normalize(raw);
+    return n.indexOf('african') !== -1 && n.indexOf('european') !== -1;
+  }
+
+  function say(html) { msg.innerHTML = html; }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (done) return;
+    var raw = input.value;
+    if (!raw.trim()) { say('The keeper stares at you. He needs an answer.'); return; }
+
+    if (isCorrect(raw)) {
+      done = true;
+      input.disabled = true;
+      form.querySelector('button').disabled = true;
+      say('The keeper blinks. <b>"Hm? Well, I don\'t know that!"</b> He lets you pass. ' +
+          'Taking you home... (<a href="' + home + '">or go now</a>)');
+      window.setTimeout(function () { window.location.href = home; }, 2400);
+      return;
+    }
+
+    tries++;
+    if (/\d|mph|kph|km|m\/s|metre|meter/i.test(raw)) {
+      say('A number? You clearly have not seen Monty Python...');
+    } else if (tries >= 3) {
+      say('Still wrong. <b>Hint:</b> just go watch Monty Python - Bridge of Death ');
+    } else {
+      say('<b>Wrong.</b> \'The keeper flings you to your demise\' Try again, or take the maze.');
+    }
+    input.select();
+  });
+})();
+
+// maze
+(function () {
+  var canvas = document.getElementById('mz-canvas');
+  if (!canvas || !canvas.getContext) return;
+  var ctx = canvas.getContext('2d');
+  var movesEl = document.getElementById('mz-moves');
+  var msgEl = document.getElementById('mz-msg');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // walls are bit flags per cell
+  var N = 1, E = 2, S = 4, W = 8;
+  var DIRS = {
+    up:    { bit: N, dx: 0,  dy: -1, opp: S },
+    right: { bit: E, dx: 1,  dy: 0,  opp: W },
+    down:  { bit: S, dx: 0,  dy: 1,  opp: N },
+    left:  { bit: W, dx: -1, dy: 0,  opp: E }
+  };
+
+  var cols, rows, cell, walls, robot, facing, trail, moves, won, best, anim;
+
+  function colors() {
+    var cs = getComputedStyle(document.documentElement);
+    function v(name) { return cs.getPropertyValue(name).trim(); }
+    return { wall: v('--ink-dim'), trail: v('--amber'), robot: v('--amber'),
+             home: v('--cyan'), path: v('--cyan'), bg: v('--surface'), eye: v('--surface') };
+  }
+
+  //maze generation: depth-first "recursive backtracker" + a few loops 
+  function generate() {
+    walls = [];
+    for (var i = 0; i < cols * rows; i++) walls.push(N | E | S | W);
+    var seen = new Array(cols * rows).fill(false);
+    var stack = [0];
+    seen[0] = true;
+    while (stack.length) {
+      var c = stack[stack.length - 1], x = c % cols, y = Math.floor(c / cols);
+      var options = [];
+      for (var k in DIRS) {
+        var d = DIRS[k], nx = x + d.dx, ny = y + d.dy;
+        if (nx >= 0 && ny >= 0 && nx < cols && ny < rows && !seen[ny * cols + nx]) options.push(d);
+      }
+      if (!options.length) { stack.pop(); continue; }
+      var d2 = options[Math.floor(Math.random() * options.length)];
+      var n = (y + d2.dy) * cols + (x + d2.dx);
+      walls[c] &= ~d2.bit;
+      walls[n] &= ~d2.opp;
+      seen[n] = true;
+      stack.push(n);
+    }
+    // knock out some extra walls so there is more than one way home
+    var extra = Math.round(cols * rows * 0.08);
+    for (var e = 0; e < extra; e++) {
+      var cx = Math.floor(Math.random() * (cols - 1)), cy = Math.floor(Math.random() * rows);
+      if (Math.random() < 0.5 && cy < rows - 1) {
+        walls[cy * cols + cx] &= ~S; walls[(cy + 1) * cols + cx] &= ~N;
+      } else {
+        walls[cy * cols + cx] &= ~E; walls[cy * cols + cx + 1] &= ~W;
+      }
+    }
+  }
+
+  // breadth-first search: the shortest way home 
+  function shortestPath() {
+    var goal = cols * rows - 1, prev = new Array(cols * rows).fill(-1), queue = [0];
+    prev[0] = 0;
+    while (queue.length) {
+      var c = queue.shift();
+      if (c === goal) break;
+      var x = c % cols, y = Math.floor(c / cols);
+      for (var k in DIRS) {
+        var d = DIRS[k];
+        if (walls[c] & d.bit) continue;
+        var n = (y + d.dy) * cols + (x + d.dx);
+        if (prev[n] === -1) { prev[n] = c; queue.push(n); }
+      }
+    }
+    var path = [goal];
+    while (path[0] !== 0) path.unshift(prev[path[0]]);
+    return path;
+  }
+
+  // drawing 
+  function center(c) {
+    return { x: (c % cols + 0.5) * cell, y: (Math.floor(c / cols) + 0.5) * cell };
+  }
+
+  function draw(pathProgress) {
+    var col = colors(), w = cols * cell, h = rows * cell;
+    ctx.clearRect(0, 0, w, h);
+
+    // trail
+    ctx.fillStyle = col.trail;
+    ctx.globalAlpha = 0.35;
+    trail.forEach(function (c) {
+      var p = center(c);
+      ctx.beginPath(); ctx.arc(p.x, p.y, Math.max(1.5, cell * 0.08), 0, Math.PI * 2); ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+
+    // BFS path after winning
+    if (won && best && pathProgress > 0) {
+      var upto = Math.max(1, Math.floor(best.length * pathProgress));
+      ctx.strokeStyle = col.path; ctx.lineWidth = Math.max(2, cell * 0.12);
+      ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      ctx.setLineDash([cell * 0.25, cell * 0.2]);
+      ctx.beginPath();
+      for (var i = 0; i < upto; i++) {
+        var p2 = center(best[i]);
+        if (i === 0) ctx.moveTo(p2.x, p2.y); else ctx.lineTo(p2.x, p2.y);
+      }
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+
+    // walls
+    ctx.strokeStyle = col.wall; ctx.lineWidth = 2; ctx.lineCap = 'square';
+    ctx.beginPath();
+    for (var c = 0; c < walls.length; c++) {
+      var x = (c % cols) * cell, y = Math.floor(c / cols) * cell;
+      if (walls[c] & N) { ctx.moveTo(x, y); ctx.lineTo(x + cell, y); }
+      if (walls[c] & W) { ctx.moveTo(x, y); ctx.lineTo(x, y + cell); }
+      if (c % cols === cols - 1 && walls[c] & E) { ctx.moveTo(x + cell, y); ctx.lineTo(x + cell, y + cell); }
+      if (Math.floor(c / cols) === rows - 1 && walls[c] & S) { ctx.moveTo(x, y + cell); ctx.lineTo(x + cell, y + cell); }
+    }
+    ctx.stroke();
+
+    // home tile: a little house
+    var g = center(cols * rows - 1), s = cell * 0.26;
+    ctx.fillStyle = col.home;
+    ctx.beginPath();
+    ctx.moveTo(g.x, g.y - s * 1.1);
+    ctx.lineTo(g.x + s, g.y - s * 0.1);
+    ctx.lineTo(g.x + s * 0.7, g.y - s * 0.1);
+    ctx.lineTo(g.x + s * 0.7, g.y + s);
+    ctx.lineTo(g.x - s * 0.7, g.y + s);
+    ctx.lineTo(g.x - s * 0.7, g.y - s * 0.1);
+    ctx.lineTo(g.x - s, g.y - s * 0.1);
+    ctx.closePath();
+    ctx.fill();
+
+    // robot: rounded body + two eyes looking where it last moved
+    var r = center(robot), b = cell * 0.32;
+    ctx.fillStyle = col.robot;
+    ctx.beginPath();
+    if (ctx.roundRect) ctx.roundRect(r.x - b, r.y - b, b * 2, b * 2, b * 0.35);
+    else ctx.rect(r.x - b, r.y - b, b * 2, b * 2);
+    ctx.fill();
+    ctx.fillStyle = col.eye;
+    var fx = facing.dx * b * 0.3, fy = facing.dy * b * 0.3, er = Math.max(1.2, b * 0.18);
+    [-1, 1].forEach(function (side) {
+      ctx.beginPath();
+      ctx.arc(r.x + side * b * 0.42 + fx, r.y - b * 0.1 + fy, er, 0, Math.PI * 2);
+      ctx.fill();
+    });
+  }
+
+  // game flow 
+  function layout() {
+    var width = canvas.parentElement.clientWidth;
+    var narrow = width < 480;
+    var newCols = narrow ? 9 : 15, newRows = 9;
+    var changed = newCols !== cols || newRows !== rows;
+    cols = newCols; rows = newRows;
+    cell = Math.floor(width / cols);
+    var dpr = window.devicePixelRatio || 1;
+    canvas.width = cols * cell * dpr;
+    canvas.height = rows * cell * dpr;
+    canvas.style.height = (rows * cell) + 'px';
+    canvas.style.width = (cols * cell) + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    return changed;
+  }
+
+  function newGame() {
+    if (anim) cancelAnimationFrame(anim);
+    generate();
+    robot = 0; facing = DIRS.right; trail = [0]; moves = 0; won = false; best = null;
+    movesEl.textContent = 'moves: 0';
+    msgEl.textContent = '';
+    draw(0);
+  }
+
+  function move(name) {
+    if (won) return;
+    var d = DIRS[name];
+    facing = d;
+    if (walls[robot] & d.bit) { draw(0); return; }  // bumped into a wall, just turn
+    var x = robot % cols + d.dx, y = Math.floor(robot / cols) + d.dy;
+    robot = y * cols + x;
+    trail.push(robot);
+    moves++;
+    movesEl.textContent = 'moves: ' + moves;
+    if (robot === cols * rows - 1) return win();
+    draw(0);
+  }
+
+  function win() {
+    won = true;
+    best = shortestPath();
+    var optimal = best.length - 1;
+    msgEl.innerHTML = moves === optimal
+      ? 'Home in <b>' + moves + '</b> moves. That is the shortest path, BFS agrees.'
+      : 'Home in <b>' + moves + '</b> moves. BFS found a way in <b>' + optimal + '</b> (dashed line).';
+    if (reduceMotion) { draw(1); return; }
+    var start = null;
+    function step(t) {
+      if (start === null) start = t;
+      var p = Math.min(1, (t - start) / 900);
+      draw(p);
+      if (p < 1) anim = requestAnimationFrame(step);
+    }
+    anim = requestAnimationFrame(step);
+  }
+
+  // input 
+  var KEYS = { ArrowUp: 'up', ArrowDown: 'down', ArrowLeft: 'left', ArrowRight: 'right',
+               w: 'up', s: 'down', a: 'left', d: 'right', W: 'up', S: 'down', A: 'left', D: 'right' };
+  document.addEventListener('keydown', function (e) {
+    var dir = KEYS[e.key];
+    if (!dir || won || e.altKey || e.ctrlKey || e.metaKey) return;
+    var tag = (e.target.tagName || '').toLowerCase();
+    if (tag === 'input' || tag === 'textarea') return;  // typing the keeper's answer must not move the robot
+    e.preventDefault();  // stop the arrows from scrolling the page while playing
+    move(dir);
+  });
+
+  var touch = null;
+  canvas.addEventListener('touchstart', function (e) {
+    touch = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+  }, { passive: true });
+  canvas.addEventListener('touchend', function (e) {
+    if (!touch) return;
+    var dx = e.changedTouches[0].clientX - touch.x, dy = e.changedTouches[0].clientY - touch.y;
+    touch = null;
+    if (Math.max(Math.abs(dx), Math.abs(dy)) < 24) return;
+    move(Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 'right' : 'left') : (dy > 0 ? 'down' : 'up'));
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('.mz-pad button'), function (btn) {
+    btn.addEventListener('click', function () { move(btn.getAttribute('data-dir')); });
+  });
+  document.getElementById('mz-new').addEventListener('click', function () { newGame(); this.blur(); });
+
+  // redraw when the theme toggle changes the colours
+  new MutationObserver(function () { draw(won ? 1 : 0); })
+    .observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+  var resizeTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      if (layout()) newGame(); else draw(won ? 1 : 0);
+    }, 150);
+  });
+
+  layout();
+  newGame();
+})();
+</script>
