@@ -1,7 +1,7 @@
 ---
 title: "Intro to Genesis: setting it up on WSL2"
 tags: [genesis, wsl2, cuda, setup]
-skills: [Linux, Python]
+skills: [Linux, Python, PyTorch, Genesis]
 description: "Setting up CUDA, PyTorch and the Genesis simulator on WSL2, and fixing the CUDA and black-screen errors I hit."
 ---
 

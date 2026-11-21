@@ -8,7 +8,7 @@ description: "A ROS2 navigation pipeline for a differential-drive robot in Gazeb
 repo: "https://github.com/IloPinci/Research_Track_2-Unige/tree/assignment"
 video: "/assets/videos/rt_2.mp4"
 tags: ["ROS2", "C++", "Gazebo", "tf2"]
-skills: [ROS2, C++, Python]
+skills: [ROS2, C++, Python, Gazebo]
 ---
 {% raw %}
 <div align="center" markdown="1">

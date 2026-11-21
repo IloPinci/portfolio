@@ -8,7 +8,7 @@ description: "Robustness evaluation of the SmolVLA vision-language-action model 
 repo: "https://github.com/IloPinci/SmolVLA-Perturbation-Study"
 video: "/assets/videos/smolvla-perturbation-study.mp4"
 tags: ["VLA", "Imitation Learning", "Genesis", "LeRobot"]
-skills: [Python]
+skills: [Python, PyTorch, LeRobot, Genesis]
 ---
 {% raw %}
 <div align="center" markdown="1">
