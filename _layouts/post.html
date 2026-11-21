@@ -9,5 +9,21 @@ layout: default
     <div class="post-content">
       {{ content }}
     </div>
+
+    
+    {% if page.previous or page.next %}
+    <nav class="post-nav" aria-label="More notes">
+      {% if page.previous %}
+      <a class="pn-prev" href="{{ page.previous.url | relative_url }}">
+        <span class="pn-label">&larr; Older note</span>{{ page.previous.title }}
+      </a>
+      {% endif %}
+      {% if page.next %}
+      <a class="pn-next" href="{{ page.next.url | relative_url }}">
+        <span class="pn-label">Newer note &rarr;</span>{{ page.next.title }}
+      </a>
+      {% endif %}
+    </nav>
+    {% endif %}
   </div>
 </section>
