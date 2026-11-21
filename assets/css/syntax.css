@@ -7,6 +7,7 @@ figure.highlight {
   border: 1px solid #2c313c;
   box-shadow: 0 2px 10px rgba(0,0,0,.25);
   overflow: hidden;
+  position: relative;
 }
 div.highlighter-rouge::before {
   content: attr(class);
@@ -44,3 +45,19 @@ pre.highlight {
 .highlight .p { color: #abb2bf; }
 .highlight .gp, .highlight .go { color: #7f848e; }
 .highlight .err { color: #e06c75; background: none; }
+
+/* the style for the copy button*/
+.copy-btn{
+  position: absolute; top: 8px; right: 8px;
+  font: 12px var(--mono);
+  padding: 3px 9px;
+  border: 1px solid #3a404c; border-radius: 4px;
+  background: #262b35; color: #abb2bf;
+  cursor: pointer;
+  opacity: 0; transition: opacity 0.2s ease, color 0.2s ease;
+}
+div.highlighter-rouge:hover .copy-btn,
+.copy-btn:focus-visible,
+.copy-btn.is-done{ opacity: 1; }
+.copy-btn.is-done{ color: #98c379; }
+@media (hover: none){ .copy-btn{ opacity: 1; } }
