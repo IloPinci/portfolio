@@ -155,9 +155,9 @@ sitemap: false
       done = true;
       input.disabled = true;
       form.querySelector('button').disabled = true;
-      say('The keeper blinks. <b>"Hm? Well, I don\'t know that!"</b> He lets you pass. ' +
+      say('The keeper blinks. <b>"Hm? Well, I don\'t know that!"</b> He is flung to his doom. ' +
           'Taking you home... (<a href="' + home + '">or go now</a>)');
-      window.setTimeout(function () { window.location.href = home; }, 2400);
+      window.setTimeout(function () { window.location.href = home; }, 5000);
       return;
     }
 
