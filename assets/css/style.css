@@ -6,18 +6,18 @@
   --ink: #111111;
   --ink-dim: #555555;
   --ink-faint: #737373;
-  --accent: #111111;
+  --accent: #1D3FBB;
   /* legacy names: other stylesheets still use --amber and --cyan, both now map to the single accent */
   --amber: var(--accent);
   --cyan: var(--accent);
   --line: #E5E5E5;
   --line-bright: #CFCFCF;
   --on-accent: #FFFFFF;
-  --glow-cyan: rgba(0, 0, 0, 0.12);
+  --glow-cyan: rgba(29, 63, 187, 0.16);
 
   /* background grid */
   --grid: rgba(0, 0, 0, 0.08);
-  --grid-hot: rgba(0, 0, 0, 0.5);
+  --grid-hot: rgba(29, 63, 187, 0.55);
 
   --serif: 'Book Antiqua', 'Palatino Linotype', Palatino, 'TeX Gyre Pagella', 'URW Palladio L', P052, Georgia, serif;
   --sans: var(--serif);
@@ -33,14 +33,14 @@
   --ink: #EDEDED;
   --ink-dim: #A0A0A0;
   --ink-faint: #8A8A8A;
-  --accent: #EDEDED;
+  --accent: #8FA8FF;
   --line: #2A2A2A;
   --line-bright: #3A3A3A;
   --on-accent: #111111;
-  --glow-cyan: rgba(255, 255, 255, 0.15);
+  --glow-cyan: rgba(143, 168, 255, 0.28);
 
   --grid: rgba(255, 255, 255, 0.07);
-  --grid-hot: rgba(255, 255, 255, 0.45);
+  --grid-hot: rgba(143, 168, 255, 0.6);
 }
 
 *{ box-sizing: border-box; }
@@ -327,7 +327,7 @@ h2{
 .lede .aside a:hover { text-decoration-style: solid; }
 
 .btn.primary{ background: var(--accent); color: var(--on-accent); border-color: var(--accent); font-weight: 700; }
-.btn.primary:hover{ background: var(--ink-dim); border-color: var(--ink-dim); color: var(--on-accent); }
+.btn.primary:hover{ background: var(--ink); border-color: var(--ink); color: var(--bg); }
 .btn.ghost{ color: var(--ink); }
 .btn.ghost:hover{ border-color: var(--ink); background: var(--surface); }
 
@@ -487,6 +487,7 @@ footer p.lede{ color: var(--ink-dim); max-width: 520px; margin: 0 0 34px; }
   flex-wrap: wrap;
   gap: 10px;
 }
+
 
 /* =====================================================
    BLOG / NOTES
