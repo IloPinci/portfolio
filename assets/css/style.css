@@ -19,7 +19,7 @@
   --grid: rgba(31, 27, 22, 0.10);
   --grid-hot: rgba(139, 58, 31, 0.55);
 
-  --serif: 'Book Antiqua', 'Palatino Linotype', Palatino, 'TeX Gyre Pagella', 'URW Palladio L', P052, Georgia, serif;
+  --serif: 'Pagella Web', 'Book Antiqua', 'Palatino Linotype', Palatino, 'URW Palladio L', P052, Georgia, serif;
   --sans: var(--serif);
   --mono: 'JetBrains Mono', ui-monospace, monospace;
   --maxw: 1080px;
@@ -99,9 +99,7 @@ a{ color: inherit; }
   outline-offset: 3px;
 }
 
-/* ---------- background grid ----------
-   Base grid is always visible. A second, accent-coloured copy of the grid is revealed
-   through a soft circle that follows the cursor (see grid-glow.js). */
+/* ---------- background grid ---------- */
 .grid-bg{
   position: fixed;
   inset: 0;
@@ -458,7 +456,7 @@ h2{
 }
 .skill-pill:hover{ border-color: var(--accent); }
 
-/* honors / languages */
+/* ---------- honors / languages ---------- */
 ul.plain{ list-style: none; margin: 0; padding: 0; }
 ul.plain li{
   padding: 12px 0;
@@ -473,7 +471,7 @@ ul.plain li:first-child{ border-top: none; }
 ul.plain li strong{ color: var(--ink); font-weight: 700; }
 ul.plain li span.val{ font-style: italic; font-size: 15px; color: var(--ink-faint); white-space: nowrap; }
 
-/* footer / contact */
+/* ---------- footer / contact ---------- */
 footer{ padding: 90px 0 60px; }
 footer h2{ margin-bottom: 18px; }
 footer p.lede{ color: var(--ink-dim); max-width: 520px; margin: 0 0 34px; }
@@ -489,7 +487,9 @@ footer p.lede{ color: var(--ink-dim); max-width: 520px; margin: 0 0 34px; }
 }
 
 
-/*    BLOG / NOTES */
+/* =====================================================
+   BLOG / NOTES
+   ===================================================== */
 
 .blog-header{ padding: 120px 0 60px; border-bottom: 1px solid var(--line); }
 .blog-header h1{
