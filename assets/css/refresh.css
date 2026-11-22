@@ -1,0 +1,63 @@
+.pwin-bar,
+.sk-bar{ display: none; }
+
+/* project cards: no lift, no glow, just a border change */
+.pwin{ border-radius: 3px; }
+.pwin:hover,
+.pwin:focus-within{
+  transform: none;
+  box-shadow: none;
+  border-color: var(--accent);
+}
+.pwin.is-featured .pwin-media{ border-top: none; }
+
+.pwin-id{
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 44px;
+}
+.pwin-body h3{ font-family: var(--serif); font-size: 21px; }
+.pwin.is-featured .pwin-body h3{ font-size: 26px; }
+.pwin-desc{ font-size: 16px; }
+.pwin-badge{
+  font-family: var(--serif);
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 14px;
+  border: none;
+  border-bottom: 1px solid var(--accent);
+  border-radius: 0;
+  padding: 0 0 2px;
+}
+
+/* project detail pages */
+.readme h1,
+.readme h4{ font-family: var(--serif); }
+.readme h1{ font-size: 30px; }
+.readme h4{ font-size: 17px; }
+.readme th{ font-family: var(--serif); font-size: 14px; font-weight: 700; }
+.readme summary{ font-family: var(--serif); font-size: 16px; }
+.readme table{ font-size: 15px; }
+.readme details{ border-radius: 3px; }
+.readme video{ border-radius: 3px; }
+
+/* skill explorer */
+.sk-name{ font-family: var(--serif); font-size: 26px; }
+.sk-count{ font-family: var(--serif); font-style: italic; font-size: 15px; }
+.sk-card{ border-radius: 3px; }
+.sk-card-body h4{ font-family: var(--serif); font-size: 18px; }
+.sk-desc{ font-size: 15px; }
+.sk-date{ font-family: var(--serif); font-style: italic; font-size: 15px; }
+.sk-clear{ font-family: var(--serif); font-size: 14px; border-radius: 2px; }
+.sk-badge{ font-family: var(--serif); border-radius: 2px; }
+.sk-hint{ font-size: 16px; }
+.skill-pill.is-linked{ font-size: 15px; }
+
+/* post nav (older / newer) */
+.post-nav a{ border-radius: 3px; font-size: 16px; }
+.post-nav .pn-label{ font-family: var(--serif); font-style: italic; font-size: 14px; }
+
+/* copy button on code blocks keeps the editor look but loses the mono UI feel */
+.copy-btn{ border-radius: 3px; }
