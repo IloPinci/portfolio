@@ -62,29 +62,22 @@
 /* copy button on code blocks keeps the editor look but loses the mono UI feel */
 .copy-btn{ border-radius: 3px; }
 
-/* ---------- framed sections ---------- */
-section:not(.hero){
-  padding: 14px 0;
-  border-bottom: none;
-}
-section:not(.hero) > .wrap{
-  width: calc(100% - 32px);
-  max-width: var(--maxw);
-  padding: 48px 52px;
+/* ---------- tighter, more deliberate layout ---------- */
+section{ padding: 72px 0; }
+.hero{ padding: 120px 0 80px; }
+
+ul.plain{
+  max-width: 760px;
   background: var(--surface);
   border: 1px solid var(--line-bright);
-  border-radius: 4px;
+  border-radius: 3px;
 }
-.hero{ border-bottom: none; }
-section:not(.hero) > .wrap.prose{ max-width: var(--maxw-prose); }
-
-/* things that used --surface as their own background would vanish inside a panel */
-section:not(.hero) .chip{ background: var(--bg); }
-section:not(.hero) .project:hover,
-section:not(.hero) .post-item:hover{ background: var(--surface-alt); }
-section:not(.hero) .skill-pill{ background: var(--bg); }
-section:not(.hero) .pwin{ background: var(--bg); }
+ul.plain li{ padding: 16px 22px; }
+ul.plain li span.val{ white-space: normal; text-align: right; }
 
 @media (max-width: 640px){
-  section:not(.hero) > .wrap{ padding: 32px 20px; }
+  section{ padding: 52px 0; }
+  .hero{ padding: 90px 0 56px; }
+  ul.plain li{ padding: 14px 16px; flex-direction: column; gap: 2px; }
+  ul.plain li span.val{ text-align: left; }
 }
